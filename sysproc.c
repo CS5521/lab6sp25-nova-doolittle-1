@@ -7,9 +7,12 @@
 #include "mmu.h"
 #include "proc.h"
 
+static int fork_count = 0;
+
 int
 sys_fork(void)
 {
+  fork_count++;
   return fork();
 }
 
@@ -96,4 +99,12 @@ sys_hw(void)
 {
   cprintf("hello world!\n");
   return 0;
+}
+
+// return the number of times that the fork system call
+// has been executed
+int
+sys_fkc(void)
+{
+  return fork_count;
 }
