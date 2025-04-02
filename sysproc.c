@@ -106,5 +106,12 @@ sys_hw(void)
 int
 sys_fkc(void)
 {
-  return fork_count;
+  int n;
+
+  argint(0, &n);
+  if(n != 0) {
+    return fork_count;
+  } else
+    fork_count = 0;
+    return 0;
 }
